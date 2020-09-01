@@ -1345,7 +1345,7 @@
 			"response": []
 		},
 		{
-			"name": "[OVERFLAG] Set Adult Attribute on Adult Type",
+			"name": "[OVERFLAG] Set Adult Attribute on Adult Japanese Type",
 			"event": [
 				{
 					"listen": "test",
@@ -1413,7 +1413,75 @@
 			"response": []
 		},
 		{
-			"name": "[OVERFLAG] Set Adult Attribute on Adult GPC",
+			"name": "[OVERFLAG] Set Adult Attribute on Adult English Type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92600ee8-bb66-462e-a8a6-575c3c4aea19",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"num_of_products_optimized\\\":1\");",
+							"});",
+							"pm.test(\"Adult Attribute Set\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    var adult = (jsonData['optimized-data']['entries'][0]['product']['adult']);",
+							"    pm.expect(adult).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"entries\": [\n        {\n            \"batchId\": 1111,\n            \"merchantId\": 1234567,\n            \"method\": \"insert\",\n            \"product\": {\n                \"kind\": \"content#product\",\n                \"offerId\": \"1111111111\",\n                \"source\": \"api\",\n                \"title\": \"Google Tee Black\",\n                \"description\": \"The Black Google Tee is available in unisex sizing and features a retail fit.\",\n                \"link\": \"http://my.site.com/blacktee/\",\n                \"imageLink\": \"https://shop.example.com/.../images/GGOEGXXX1100.jpg\",\n                \"contentLanguage\": \"en\",\n                \"targetCountry\": \"US\",\n                \"channel\": \"online\",\n                \"ageGroup\": \"adult\",\n                \"availability\": \"in stock\",\n                \"availabilityDate\": \"2019-01-25T13:00:00-08:00\",\n                \"brand\": \"Google\",\n                \"color\": \"black\",\n                \"condition\": \"new\",\n                \"gender\": \"male\",\n                \"googleProductCategory\": \"1604\",\n                \"gtin\": \"608802531656\",\n                \"itemGroupId\": \"google_tee\",\n                \"mpn\": \"0\",\n                \"productTypes\": [\n                \t\"product type 1\",\n                \t\"product type 2\",\n                \t\"beer,wine & spirits\",\n                \t\"product type 4\"\n                ],\n                \"price\": {\n                    \"value\": \"21.99\",\n                    \"currency\": \"USD\"\n                },\n                \"sizes\": [\n                    \"Large\"\n                ],\n                \"destinations\": [\n                    {\n                        \"destinationName\": \"Shopping\",\n                        \"intention\": \"required\"\n                    }\n                ]\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseApiUrl}}/shoptimizer/v1/batch/optimize?adult-optimizer=true&lang=en",
+					"host": [
+						"{{baseApiUrl}}"
+					],
+					"path": [
+						"shoptimizer",
+						"v1",
+						"batch",
+						"optimize"
+					],
+					"query": [
+						{
+							"key": "adult-optimizer",
+							"value": "true"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[OVERFLAG] Set Adult Attribute on Adult Japanese GPC",
 			"event": [
 				{
 					"listen": "test",
@@ -1481,7 +1549,75 @@
 			"response": []
 		},
 		{
-			"name": "[OVERFLAG] Set Adult Attribute on Adult Category and Title",
+			"name": "[OVERFLAG] Set Adult Attribute on Adult English GPC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f011b0c-be8e-4de3-bd68-adda5cb103a1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"num_of_products_optimized\\\":1\");",
+							"});",
+							"pm.test(\"Adult Attribute Set\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    var adult = (jsonData['optimized-data']['entries'][0]['product']['adult']);",
+							"    pm.expect(adult).to.equal(true);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"entries\": [\n        {\n            \"batchId\": 1111,\n            \"merchantId\": 1234567,\n            \"method\": \"insert\",\n            \"product\": {\n            \t\"adult\": false,\n                \"kind\": \"content#product\",\n                \"offerId\": \"1111111111\",\n                \"source\": \"api\",\n                \"title\": \"Google Tee Black\",\n                \"description\": \"The Black Google Tee is available in unisex sizing and features a retail fit.\",\n                \"link\": \"http://my.site.com/blacktee/\",\n                \"imageLink\": \"https://shop.example.com/.../images/GGOEGXXX1100.jpg\",\n                \"contentLanguage\": \"en\",\n                \"targetCountry\": \"US\",\n                \"channel\": \"online\",\n                \"ageGroup\": \"adult\",\n                \"availability\": \"in stock\",\n                \"availabilityDate\": \"2019-01-25T13:00:00-08:00\",\n                \"brand\": \"Google\",\n                \"color\": \"black\",\n                \"condition\": \"new\",\n                \"gender\": \"male\",\n                \"googleProductCategory\": \"Food, Beverages & Tobacco > Tobacco Products\",\n                \"gtin\": \"608802531656\",\n                \"itemGroupId\": \"google_tee\",\n                \"mpn\": \"0\",\n                \"productTypes\": [\n                ],\n                \"price\": {\n                    \"value\": \"21.99\",\n                    \"currency\": \"USD\"\n                },\n                \"sizes\": [\n                    \"Large\"\n                ],\n                \"destinations\": [\n                    {\n                        \"destinationName\": \"Shopping\",\n                        \"intention\": \"required\"\n                    }\n                ]\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseApiUrl}}/shoptimizer/v1/batch/optimize?adult-optimizer=true&lang=en",
+					"host": [
+						"{{baseApiUrl}}"
+					],
+					"path": [
+						"shoptimizer",
+						"v1",
+						"batch",
+						"optimize"
+					],
+					"query": [
+						{
+							"key": "adult-optimizer",
+							"value": "true"
+						},
+						{
+							"key": "lang",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[OVERFLAG] Set Adult Attribute on Adult Japanese Category and Title",
 			"event": [
 				{
 					"listen": "test",
@@ -1549,7 +1685,7 @@
 			"response": []
 		},
 		{
-			"name": "[OVERFLAG] Set Adult Attribute on Adult Category and Description",
+			"name": "[OVERFLAG] Set Adult Attribute on Adult Japanese Category and Description",
 			"event": [
 				{
 					"listen": "test",
