@@ -1,6 +1,16 @@
 {
   "adult_product_types": [
+    "erotic",
+    "erotica",
+    "erotica and porn",
+    "mature",
+    "porn",
+    "sex doll",
+    "sex enhancements",
+    "sex toys",
+    "sexual enhancers"
   ],
   "adult_google_product_categories": {
+    "Mature" : ["*"]
   }
 }
